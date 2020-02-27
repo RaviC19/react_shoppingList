@@ -1,17 +1,32 @@
 import React, { useState } from "react";
 
-function UserInput() {
+function UserInput({ addToBasket }) {
   const [input, setInput] = useState("");
+
   function handleChange(event) {
     setInput(event.target.value);
   }
 
+  function resetInput() {
+    setInput("");
+  }
+
   return (
     <div>
-      <input value={input} onChange={handleChange} />
-      <ol>
-        <button onClick={input}>Add item to list</button>
-      </ol>
+      <form
+        onSubmit={event => {
+          event.preventDefault();
+          addToBasket(input);
+          resetInput();
+        }}
+      >
+        <input
+          type="text"
+          value={input}
+          onChange={handleChange}
+          placeholder="Add more food to basket"
+        />
+      </form>
     </div>
   );
 }

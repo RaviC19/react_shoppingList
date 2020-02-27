@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 
-const data = [
-  { item: "Chicken" },
-  { item: "Protein Powder" },
-  { item: "Milk" },
-  { item: "Cookies" }
-];
+function ShoppingList(props) {
+  return (
+    <div>
+      {props.basket.map(basket => (
+        <li>{basket.item}</li>
+      ))}
+    </div>
+  );
+}
 
 export default ShoppingList;

@@ -1,11 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
+import ShoppingList from "./ShoppingList";
 import UserInput from "./UserInput";
+import DeleteItem from "./DeleteItem";
 
 function App() {
+  const data = [
+    { id: 1, item: "Chicken" },
+    { id: 2, item: "Protein Powder" },
+    { id: 3, item: "Milk" },
+    { id: 4, item: "Cookies" }
+  ];
+
+  const [basket, setBasket] = useState(data);
+
+  const addToBasket = newFood => {
+    setBasket([...basket, { id: 5, item: newFood }]);
+  };
+
+  function deleteButton() {
+    setBasket([]);
+  }
+
   return (
     <div className="App">
       <h1>Shopping List</h1>
-      <UserInput />
+      <UserInput addToBasket={addToBasket} />
+      <ShoppingList basket={basket} />
+      <DeleteItem deleteButton={deleteButton} />
     </div>
   );
 }
